@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nicholas Andrew Marvell — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off: #f8f7f4;
+    --light: #eeece7;
+    --muted: #9e9b94;
+    --ink-light: #6b6860;
+    --ink: #2a2825;
+    --accent: #1a5c3a;
+    --accent-light: #e8f2ec;
+    --accent-mid: #2e7d52;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Outfit', sans-serif;
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--light);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: var(--off);
+    z-index: 0;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent-mid);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent-mid);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+    max-width: 420px;
+    margin-bottom: 2rem;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--sans);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--accent-mid); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--light);
+  }
+  .btn-ghost:hover { border-color: var(--muted); background: var(--off); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .hero-stat {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.5rem;
+  }
+  .hero-stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .hero-stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .hero-stat-sub {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 0.2rem;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 3rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--off); }
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: var(--radius);
+    padding: 2rem 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #c3ddd0;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .stack-item {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--off);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--light);
+  }
+  .project-detail {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--light);
+  }
+  .project-card.open .project-detail { display: block; }
+  .project-detail-text {
+    font-size: 0.875rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+  .project-detail h4 {
+    font-size: 0.8rem;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+  .project-detail h4:first-child { margin-top: 0; }
+  .expand-btn {
+    font-size: 12px;
+    color: var(--accent-mid);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--mono);
+    padding: 0;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .expand-btn .arrow { transition: transform 0.2s; }
+  .project-card.open .expand-btn .arrow { transform: rotate(90deg); }
+
+  /* SKILLS */
+  #skills { background: var(--white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .skill-group {
+    border: 1px solid var(--light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-mid);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--light);
+  }
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .skill-list li {
+    font-size: 13px;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .skill-list li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ABOUT */
+  #about { background: var(--off); }
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .meta-item {
+    padding: 1.2rem 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--light);
+    border-radius: var(--radius);
+  }
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .meta-value {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--ink-light);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--ink); }
+  #contact .section-label { color: #6db88a; }
+  #contact .section-title { color: var(--white); }
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    color: #d0cec8;
+    font-size: 13px;
+    font-family: var(--mono);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 3rem;
+    text-align: center;
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.06em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.22s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.34s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.46s; }
+  .hero-right > * {
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+  .hero-right > *:nth-child(1) { animation-delay: 0.3s; }
+  .hero-right > *:nth-child(2) { animation-delay: 0.42s; }
+  .hero-right > *:nth-child(3) { animation-delay: 0.54s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero::before { display: none; }
+    .hero-inner, .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">NAM.DEV</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Computer Science · AI Track</div>
+      <h1>Nicholas<br>Andrew <em>Marvell</em></h1>
+      <p class="hero-bio">A developer with a passion for AI and machine learning — building intelligent systems from the ground up, from model training to full-stack deployment.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <div class="hero-stat-label">Current Status</div>
+        <div class="hero-stat-value">Exchange Student</div>
+        <div class="hero-stat-sub">Hanyang University, Seoul · 2026</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Home Institution</div>
+        <div class="hero-stat-value">BINUS University</div>
+        <div class="hero-stat-sub">Alam Sutera Campus · GPA 3.44</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Specialisation</div>
+        <div class="hero-stat-value">Artificial Intelligence</div>
+        <div class="hero-stat-sub">NLP · Machine Learning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Selected Work</div>
+    <div class="section-title">Projects</div>
+    <div class="projects-grid">
+
+      <!-- Project 1: Catmoji -->
+      <div class="project-card" id="card-catmoji">
+        <div class="project-header">
+          <div class="project-name">Catmoji</div>
+          <div class="project-tags">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Full-Stack</span>
+          </div>
+        </div>
+        <p class="project-desc">A web application that detects and classifies the emotional state of a cat from a photo — recognising four emotions: alarmed, angry, calm, and pleased. Built end-to-end from model training to deployment.</p>
+        <div class="project-stack">
+          <span class="stack-item">Python</span>
+          <span class="stack-item">Flask</span>
+          <span class="stack-item">PyTorch</span>
+          <span class="stack-item">ResNet18</span>
+          <span class="stack-item">OpenCV</span>
+          <span class="stack-item">HTML/CSS/JS</span>
+        </div>
+        <button class="expand-btn" onclick="toggleCard('card-catmoji')">
+          <span class="arrow">▶</span> Read more
+        </button>
+        <div class="project-detail">
+          <h4>How it works</h4>
+          <p class="project-detail-text">
+            The backend is a Flask server that accepts an uploaded image and runs a multi-step inference pipeline. First, a Haar Cascade classifier (haarcascade_frontalcatface_extended.xml) detects the cat's face and crops the region. The crop is then resized, normalised, and converted to a tensor before being fed into a fine-tuned ResNet18 model. The predicted emotion label is returned to the frontend and displayed to the user.
+          </p>
+          <h4>Architecture</h4>
+          <p class="project-detail-text">
+            Two pages: <code>index.html</code> for image upload and <code>results.html</code> for displaying the prediction. The frontend communicates with the Flask API via HTTP, keeping the UI clean and accessible to non-technical users.
+          </p>
+          <h4>Research component</h4>
+          <p class="project-detail-text">
+            Conducted a comparative study between ResNet18 and MobileViT on the cat emotion recognition task, evaluating accuracy, inference speed, and generalisation. ResNet18 was selected for deployment based on its consistent training results.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 2: Face Emotion Recognition -->
+      <div class="project-card" id="card-fer">
+        <div class="project-header">
+          <div class="project-name">Face Emotion Recognition</div>
+          <div class="project-tags">
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Research</span>
+          </div>
+        </div>
+        <p class="project-desc">An AI project benchmarking deep learning architectures for facial expression recognition, implemented in Python with Jupyter Notebook for interactive experimentation and documentation.</p>
+        <div class="project-stack">
+          <span class="stack-item">Python</span>
+          <span class="stack-item">PyTorch</span>
+          <span class="stack-item">ResNet18</span>
+          <span class="stack-item">MobileViT</span>
+          <span class="stack-item">Jupyter Notebook</span>
+        </div>
+        <button class="expand-btn" onclick="toggleCard('card-fer')">
+          <span class="arrow">▶</span> Read more
+        </button>
+        <div class="project-detail">
+          <h4>Overview</h4>
+          <p class="project-detail-text">
+            This project focuses on Computer Vision and Image Classification, comparing two architectures: ResNet18 — a classic convolutional neural network — and MobileViT, a lightweight vision transformer designed for resource-constrained environments. Both models were trained and evaluated on a labelled facial expression dataset.
+          </p>
+          <h4>Tech stack</h4>
+          <p class="project-detail-text">
+            Built entirely in Python within a Jupyter Notebook environment, leveraging PyTorch for model implementation and standard data processing libraries for preprocessing and augmentation pipelines.
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 3: Fitness App -->
+      <div class="project-card" id="card-fitness">
+        <div class="project-header">
+          <div class="project-name">Fitness App</div>
+          <div class="project-tags">
+            <span class="tag">Software Engineering</span>
+            <span class="tag">Group Project</span>
+          </div>
+        </div>
+        <p class="project-desc">A health and fitness mobile application built as a software engineering group project. Helps users track their weight, calculate BMI, log daily exercises, discover healthy recipes, and self-diagnose symptoms through a questionnaire-based system.</p>
+        <div class="project-stack">
+          <span class="stack-item">MVC Architecture</span>
+          <span class="stack-item">Agile</span>
+          <span class="stack-item">Use Case Analysis</span>
+          <span class="stack-item">Function Point Analysis</span>
+        </div>
+        <button class="expand-btn" onclick="toggleCard('card-fitness')">
+          <span class="arrow">▶</span> Read more
+        </button>
+        <div class="project-detail">
+          <h4>Key Features</h4>
+          <p class="project-detail-text">
+            BMI calculation from height and weight inputs; a weight tracking program with trend analysis that suggests exercises when weight increases or alerts the user if weight drops too rapidly; an exercise logger where users record sets and reps per session; a healthy recipe browser with step-by-step cooking instructions; and a symptom questionnaire that diagnoses potential illnesses and recommends treatments.
+          </p>
+          <h4>Architecture & Process</h4>
+          <p class="project-detail-text">
+            Built on an MVC (Model-View-Controller) pattern — the Model handles business logic (BMI formula, weight trend analysis, food and illness databases), the View renders charts, recipe lists, and result screens, and the Controller bridges user interactions with data flow. The team followed an Agile process model with daily standups and weekly milestone deliverables.
+          </p>
+          <h4>Engineering Depth</h4>
+          <p class="project-detail-text">
+            The project included formal software engineering artefacts: Use Case and Activity diagrams, a Class diagram, Use Case Point and Function Point effort estimation, a Risk Table, Cyclomatic Complexity analysis, and a full test case suite — demonstrating end-to-end software development methodology.
+          </p>
+          <h4>Team</h4>
+          <p class="project-detail-text">
+            Collaboratively built with four groupmates: Reykar Sarwan Koisa, David Alexander Haryono, Mikael Bryan Sunardi, and Evander Freddrick Karundeng.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Toolkit</div>
+    <div class="section-title">Skills &amp; Technologies</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>JavaScript</li>
+          <li>PHP</li>
+          <li>SQL</li>
+          <li>HTML &amp; CSS</li>
+          <li>C / C++</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI &amp; Data Science</div>
+        <ul class="skill-list">
+          <li>Machine Learning</li>
+          <li>Computer Vision</li>
+          <li>Natural Language Processing</li>
+          <li>Explainable AI (XAI)</li>
+          <li>TensorFlow / Keras</li>
+          <li>PyTorch</li>
+          <li>spaCy</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frameworks</div>
+        <ul class="skill-list">
+          <li>React</li>
+          <li>Laravel</li>
+          <li>Flask</li>
+          <li>Bootstrap</li>
+          <li>RESTful APIs</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Engineering</div>
+        <ul class="skill-list">
+          <li>OOP &amp; Design Patterns</li>
+          <li>Data Structures &amp; Algorithms</li>
+          <li>Human-Computer Interaction</li>
+          <li>Software Engineering</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud &amp; Security</div>
+        <ul class="skill-list">
+          <li>Cloud Security</li>
+          <li>Encryption</li>
+          <li>Computer Networks</li>
+          <li>Information Security</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Tools &amp; Platforms</div>
+        <ul class="skill-list">
+          <li>Git &amp; GitHub</li>
+          <li>Linux (Ubuntu)</li>
+          <li>Cisco Packet Tracer</li>
+          <li>VirtualBox</li>
+          <li>Git LFS</li>
+          <li>Jupyter Notebook</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Background</div>
+    <div class="section-title">About Me</div>
+    <div class="about-inner">
+      <div class="about-meta">
+        <div class="meta-item">
+          <div class="meta-label">Degree</div>
+          <div class="meta-value">B.Sc. Computer Science — AI Track</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Home University</div>
+          <div class="meta-value">BINUS University, Alam Sutera</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Exchange University</div>
+          <div class="meta-value">Hanyang University, Seoul</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">GPA</div>
+          <div class="meta-value">3.44 / 4.00</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Based In</div>
+          <div class="meta-value">Seoul, South Korea</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>
+          I'm Nicholas, a Computer Science student specialising in Artificial Intelligence at BINUS University, currently on an exchange programme at Hanyang University in Seoul.
+        </p>
+        <p>
+          My work sits at the intersection of machine learning research and practical software engineering — I enjoy taking a model from experimental notebook to a real deployed application that people can actually use.
+        </p>
+        <p>
+          I'm particularly drawn to Artificial Intelligence and Machine Learning: understanding how machines perceive and interpret the world around them. Projects like Catmoji reflect that curiosity — finding a fun, concrete problem and solving it rigorously, from dataset curation and model benchmarking all the way to full-stack deployment.
+        </p>
+        <p>
+          Outside of AI, I have a broad foundation in software engineering, networking, and security — giving me a well-rounded perspective when building systems end-to-end.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title" style="margin-bottom:1.5rem;">Let's connect.</div>
+    <p style="color:#9e9b94; font-size:0.9rem; margin-bottom:2rem; max-width:480px;">
+      Whether it's a collaboration, an opportunity, or just a conversation about AI — feel free to reach out.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:nichomarvell123@gmail.com" class="contact-link">✉ nichomarvell123@gmail.com</a>
+      <a href="https://github.com/NICHO27022" class="contact-link" target="_blank">⌥ github.com/NICHO27022</a>
+      <a href="https://www.linkedin.com/in/nicholas-andrew-marvell/" class="contact-link" target="_blank">in linkedin</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Nicholas Andrew Marvell · Built with care</p>
+</footer>
+
+<script>
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+    const btn = card.querySelector('.expand-btn');
+    btn.textContent = '';
+    const arrow = document.createElement('span');
+    arrow.className = 'arrow';
+    arrow.textContent = '▶';
+    btn.appendChild(arrow);
+    btn.appendChild(document.createTextNode(' ' + (card.classList.contains('open') ? 'Show less' : 'Read more')));
+  }
+
+  // Re-add arrow span after toggle resets text
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(() => {
+        if (!btn.querySelector('.arrow')) {
+          const arrow = document.createElement('span');
+          arrow.className = 'arrow';
+          arrow.textContent = '▶';
+          btn.prepend(arrow);
+        }
+      }, 0);
+    });
+  });
+</script>
+
+</body>
+</html>
